@@ -41,7 +41,7 @@
 /**
  * 声明各种参数
  */
-uint8_t game_scene = 0;
+uint8_t game_scene = 1;
 // 玩家移动标识 0---静止，1---上下移动 2---攻击
 uint8_t player_status = 0;
 // 虫子移动速度
@@ -1184,20 +1184,7 @@ void scene_intro()
     }
     change_scene(background, 0);
 }
-/**
- * 游戏copyright
- */
-void scene_copyright()
-{
-    bn::regular_bg_ptr background = bn::regular_bg_items::copyright.create_bg(8, 48);
-    change_scene(background, 1);
-    for (int i = 0; i < 30; i++)
-    {
-        bn::core::update();
-    }
-    game_scene = 1;
-    change_scene(background, 0);
-}
+
 int main()
 {
     bn::core::init();
@@ -1205,9 +1192,6 @@ int main()
     {
         switch (game_scene)
         {
-        case 0:
-            scene_copyright();
-            break;
         case 1:
             scene_menu();
             break;
